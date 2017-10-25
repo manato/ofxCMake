@@ -19,7 +19,7 @@ list( APPEND OF_CORE_HEADERS ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/include)
 set( LIB_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/lib/linux64/libfmodex.so )
 
 set( OF_CORE_LIBS
-        ${OF_DIRECTORY_ABSOLUTE}/libs/glfw/lib/linux64/libglfw3.a
+        #${OF_DIRECTORY_ABSOLUTE}/libs/glfw/lib/linux64/libglfw3.a
         ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/lib/linux64/libkiss.a
         ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoCrypto.a
         ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoFoundation.a
@@ -40,8 +40,11 @@ set(CMAKE_MODULE_PATH
 find_package(PkgConfig REQUIRED)
 find_package(GStreamer REQUIRED)
 
+
+
 PKG_SEARCH_MODULE( ALSA "REQUIRED" alsa )
 PKG_SEARCH_MODULE( CAIRO "REQUIRED" cairo )
+
 
 include_directories( ${CAIRO_INCLUDE_DIRS} )
 include_directories( ${OPENAL_INCLUDE_DIRS} )
@@ -95,5 +98,9 @@ set( OF_CORE_FRAMEWORKS
         freeimage
         boost_filesystem
         boost_system
+        pugixml
+        glfw
+        curl
+        uriparser
         ${LIB_FMODEX}       # SHARED
         )
