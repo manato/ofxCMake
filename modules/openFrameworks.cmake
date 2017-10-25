@@ -6,7 +6,7 @@ set(OF_SOURCE_FILES
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/of3dUtils.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/ofCamera.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/ofEasyCam.cpp
-        ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/ofMesh.cpp
+#        ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/ofMesh.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/3d/ofNode.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/app/ofAppGLFWWindow.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/app/ofAppGlutWindow.cpp
@@ -34,7 +34,7 @@ set(OF_SOURCE_FILES
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofImage.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofPath.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofPixels.cpp
-        ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofPolyline.cpp
+#        ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofPolyline.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofRendererCollection.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofTessellator.cpp
         ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofTrueTypeFont.cpp
@@ -87,7 +87,8 @@ set(HEADER_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/include)
 set(HEADER_FREEIMAGE ${OF_DIRECTORY_ABSOLUTE}/libs/FreeImage/include)
 set(HEADER_TESS2 ${OF_DIRECTORY_ABSOLUTE}/libs/tess2/include)
 set(HEADER_GLFW ${OF_DIRECTORY_ABSOLUTE}/libs/glfw/include)
-set(HEADER_UTF8 ${OF_DIRECTORY_ABSOLUTE}/libs/utf8cpp/include)
+set(HEADER_UTF8 ${OF_DIRECTORY_ABSOLUTE}/libs/utf8/include)
+set(HEADER_JSON ${OF_DIRECTORY_ABSOLUTE}/libs/json/include)
 
 
 
@@ -103,4 +104,5 @@ set( OF_CORE_HEADERS
         ${HEADER_TESS2}
         ${HEADER_GLFW}
         ${HEADER_UTF8}
+        ${HEADER_JSON}
         )
