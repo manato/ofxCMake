@@ -15,7 +15,7 @@ set( APP_NAME   ofApp )
 
 # ------------------------ OF Path -----------------------
 # --- If outside the OF structure, set an absolute OF path
-set( OF_DIRECTORY_BY_USER "../../.." )
+set( OF_DIRECTORY_BY_USER "/opt/openframeworks" )
 
 # --------------------- Source Files ---------------------
 set( ${APP_NAME}_SOURCE_FILES
