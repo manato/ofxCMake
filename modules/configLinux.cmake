@@ -11,4 +11,7 @@ set_target_properties( of_shared PROPERTIES POSITION_INDEPENDENT_CODE TRUE )
 target_link_libraries( ${APP_NAME}
                         $<TARGET_FILE:of_shared>
                         ${OFX_ADDONS_ACTIVE}
+                        ${OF_CORE_FRAMEWORKS}
                     )
+target_link_libraries(${APP_NAME} ${OF_CORE_LIBS})
+
