@@ -17,28 +17,34 @@ add_compile_options(-Wno-deprecated-declarations)
 # ------------------------------ Compile and Link ----------------------------
 add_executable( ${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES} )
 
-target_link_libraries(  ${APP_NAME}
-                        $<TARGET_FILE:of_shared>
-                        ${opengl_lib}               # TODO Why is this needed here?
-                        ${OFX_ADDONS_ACTIVE}
-                        )
+target_link_libraries(${APP_NAME}
+                      ${OF_CORE_LIBS}
+#                      ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE}/libopenFrameworks.a
+                      of_static
+                      ${opengl_lib}               # TODO Why is this needed here?
+                      ${OF_CORE_FRAMEWORKS}
+                      ${USER_LIBS}
+                      ${OFX_ADDONS_ACTIVE}
+                      )
+
+#set (CMAKE_BUILD_RPATH "build/")
 
 # ============================================================================
-ADD_CUSTOM_COMMAND( TARGET ${APP_NAME}
-        POST_BUILD
-        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
-        ARGS -change "@rpath/libopenFrameworks.dylib" "@loader_path/../Frameworks/libopenFrameworks.dylib" $<TARGET_FILE:${APP_NAME}>
-        )
-
-# TODO Explain the excecutable bindings
-ADD_CUSTOM_COMMAND( TARGET of_shared
-        POST_BUILD
-        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
-        ARGS -change ./libfmodex.dylib "@loader_path/libfmodex.dylib" $<TARGET_FILE:of_shared>
-        )
-
-ADD_CUSTOM_COMMAND( TARGET of_shared
-        POST_BUILD
-        COMMAND /bin/cp
-        ARGS ${LIB_FMODEX} ${PROJECT_SOURCE_DIR}/bin/${APP_NAME}.app/Contents/MacOS
-        )
+#ADD_CUSTOM_COMMAND( TARGET ${APP_NAME}
+#        POST_BUILD
+#        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
+#        ARGS -change "@rpath/libopenFrameworks.dylib" "@loader_path/../Frameworks/libopenFrameworks.dylib" $<TARGET_FILE:${APP_NAME}>
+#        )
+#
+## TODO Explain the excecutable bindings
+#ADD_CUSTOM_COMMAND( TARGET of_shared
+#        POST_BUILD
+#        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
+#        ARGS -change ./libfmodex.dylib "@loader_path/libfmodex.dylib" $<TARGET_FILE:of_shared>
+#        )
+#
+#ADD_CUSTOM_COMMAND( TARGET of_shared
+#        POST_BUILD
+#        COMMAND /bin/cp
+#        ARGS ${LIB_FMODEX} ${PROJECT_SOURCE_DIR}/bin/${APP_NAME}.app/Contents/MacOS
+#        )
