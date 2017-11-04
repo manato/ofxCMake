@@ -6,7 +6,7 @@ set(CMAKE_C_FLAGS "") # -x objective-c
 
 set(CMAKE_CXX_COMPILER "/usr/bin/clang++")
 set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++ -D__MACOSX_CORE__") # Removed "-stdlib=libstdc++
-set_source_files_properties( ${OF_SOURCE_FILES} PROPERTIES COMPILE_FLAGS "-x objective-c++" )
+set_source_files_properties(${OF_SOURCE_FILES} PROPERTIES COMPILE_FLAGS "-x objective-c++")
 
 #set(CMAKE_OSX_ARCHITECTURES i386)
 set(CMAKE_OSX_ARCHITECTURES x86_64)
@@ -15,36 +15,29 @@ add_compile_options(-Wno-deprecated-declarations)
 
 # ============================================================================
 # ------------------------------ Compile and Link ----------------------------
-add_executable( ${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES} )
+add_executable(${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES})
 
 target_link_libraries(${APP_NAME}
-                      ${OF_CORE_LIBS}
-#                      ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE}/libopenFrameworks.a
-                      of_static
-                      ${opengl_lib}               # TODO Why is this needed here?
-                      ${OF_CORE_FRAMEWORKS}
-                      ${USER_LIBS}
-                      ${OFX_ADDONS_ACTIVE}
-                      )
-
-#set (CMAKE_BUILD_RPATH "build/")
+        ${OF_CORE_LIBS}
+        of_static
+#        ${opengl_lib}
+        ${OF_CORE_FRAMEWORKS}
+        ${USER_LIBS}
+        ${OFX_ADDONS_ACTIVE}
+        )
 
 # ============================================================================
-#ADD_CUSTOM_COMMAND( TARGET ${APP_NAME}
-#        POST_BUILD
-#        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
-#        ARGS -change "@rpath/libopenFrameworks.dylib" "@loader_path/../Frameworks/libopenFrameworks.dylib" $<TARGET_FILE:${APP_NAME}>
-#        )
-#
-## TODO Explain the excecutable bindings
-#ADD_CUSTOM_COMMAND( TARGET of_shared
-#        POST_BUILD
-#        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
-#        ARGS -change ./libfmodex.dylib "@loader_path/libfmodex.dylib" $<TARGET_FILE:of_shared>
-#        )
-#
-#ADD_CUSTOM_COMMAND( TARGET of_shared
-#        POST_BUILD
-#        COMMAND /bin/cp
-#        ARGS ${LIB_FMODEX} ${PROJECT_SOURCE_DIR}/bin/${APP_NAME}.app/Contents/MacOS
-#        )
+
+add_custom_command(
+        TARGET ${APP_NAME}
+        POST_BUILD
+        COMMAND rsync
+        ARGS -aved ${CMAKE_SOURCE_DIR}/${OF_DIRECTORY_BY_USER}/libs/fmodex/lib/osx/libfmodex.dylib "$<TARGET_FILE_DIR:${APP_NAME}>/../Frameworks/"
+        )
+
+add_custom_command(
+        TARGET ${APP_NAME}
+        POST_BUILD
+        COMMAND ${CMAKE_INSTALL_NAME_TOOL}
+        ARGS -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib $<TARGET_FILE:${APP_NAME}>
+        )
