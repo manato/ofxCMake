@@ -1,4 +1,4 @@
-# ======================= ofxCMake Vers. 0.1 =============
+# ======================= ofxCMake Vers. 0.2 =============
 #  PUT THIS FILE INTO YOUR OPENFRAMEWORKS PROJECT FOLDER
 
 # ========================================================
@@ -11,36 +11,51 @@ project( openframeworks )
 # ===================== User Settings ====================
 # ========================================================
 # ---------------------- App name  -----------------------
-set( APP_NAME   ofApp )
+# Set the name of your app here:
+set( APP_NAME   myOfApp )
 
 # ------------------------ OF Path -----------------------
-# --- If outside the OF structure, set an absolute OF path
-set( OF_DIRECTORY_BY_USER "/opt/openframeworks" )
+#
+# This MUST be a RELATIVE path to OF!!!
+set( OF_DIRECTORY_BY_USER "../../.." )
 
 # --------------------- Source Files ---------------------
+
+# Automatically add all sources in the src folder
+file(   GLOB_RECURSE
+        APP_SRC
+        "src/*.cpp"
+        )
+
 set( ${APP_NAME}_SOURCE_FILES
-        src/main.cpp
-        src/ofApp.cpp )
+        ${APP_SRC} )
 
 
 # ------------------------ AddOns  -----------------------
-set( OFX_ADDONS_ACTIVE
-        #        ofxXmlSettings
-        #        ofxOsc
-        #        ofxGui
-        #        ofxNetwork
-        #        ofxVectorGraphics
-        #        ofxThreadedImageLoader
-        #        ofxAssimpModelLoader
-        #        ofxKinect
-        #        ofxOpenCv
-        #        ofxSvg
-        #        ofxEmscripten (untested)
-                )
+
+# Uncomment this entry to activate addOns. See the
+# project's readme.md for more information.
+
+# set( OFX_ADDONS_ACTIVE
+#         ofxOpenCv
+#         )
+
+
+# -----------------------Custom Libs  --------------------
+
+# If you need to link against additional libraries, add
+# them here:
+
+# set( USER_LIBS
+#      your/lib/path/lib.a
+#      )
+
+# Use this call to add extra include directories:
+
+#include_directories("include/myIncludeFolder")
 
 # =========================================================================
 # ============================== OpenFrameworks ===========================
 # =========================================================================
 include( ${OF_DIRECTORY_BY_USER}/addons/ofxCMake/modules/main.cmake )
 # =========================================================================
-
