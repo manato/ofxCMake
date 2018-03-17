@@ -18,13 +18,13 @@ add_compile_options(-Wno-deprecated-declarations)
 add_executable(${APP_NAME} MACOSX_BUNDLE ${${APP_NAME}_SOURCE_FILES})
 
 target_link_libraries(${APP_NAME}
-        ${OF_CORE_LIBS}
-        of_static
-#        ${opengl_lib}
-        ${OF_CORE_FRAMEWORKS}
-        ${USER_LIBS}
-        ${OFX_ADDONS_ACTIVE}
-        )
+                      ${OF_CORE_LIBS}
+                      of_static
+                      #        ${opengl_lib}
+                      ${OF_CORE_FRAMEWORKS}
+                      ${USER_LIBS}
+                      ${OFX_ADDONS_ACTIVE}
+                      )
 
 # ============================================================================
 
@@ -33,11 +33,11 @@ add_custom_command(
         POST_BUILD
         COMMAND rsync
         ARGS -aved ${CMAKE_SOURCE_DIR}/${OF_DIRECTORY_BY_USER}/libs/fmodex/lib/osx/libfmodex.dylib "$<TARGET_FILE_DIR:${APP_NAME}>/../Frameworks/"
-        )
+)
 
 add_custom_command(
         TARGET ${APP_NAME}
         POST_BUILD
         COMMAND ${CMAKE_INSTALL_NAME_TOOL}
         ARGS -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib $<TARGET_FILE:${APP_NAME}>
-        )
+)

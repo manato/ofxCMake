@@ -119,4 +119,3 @@ set(OF_CORE_FRAMEWORKS
     ${security_lib}
     ${ldap_lib}
     )
-

@@ -12,16 +12,17 @@ include_directories(${OF_CORE_HEADERS} ${OF_ADDON_HEADERS})
 # ----------------------------- Setting Libraries ----------------------------
 add_library(core OBJECT ${OF_SOURCE_FILES})
 add_library(of_static STATIC $<TARGET_OBJECTS:core>)
-#add_library( of_shared  SHARED $<TARGET_OBJECTS:core> )
+# add_library(of_shared SHARED $<TARGET_OBJECTS:core>)
+
 
 # -------------------------------- Linking --------------------------------
 #TODO is OF_CORE_FRAMEWORKS OSX specific?
 target_link_libraries(of_static ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} ${OF_CORE_FRAMEWORKS})
-#target_link_libraries(  of_shared   ${OF_CORE_FRAMEWORKS} )
+# target_link_libraries(of_shared ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} ${OF_CORE_FRAMEWORKS} )
 
 # -------------------------------- Properties --------------------------------
 set_target_properties(of_static PROPERTIES OUTPUT_NAME openFrameworks)
-#set_target_properties( of_shared    PROPERTIES OUTPUT_NAME openFrameworksShared)
+# set_target_properties(of_shared PROPERTIES OUTPUT_NAME openFrameworksShared)
 
 # -------------------------- Copy OF Libs into CMake/libs --------------------
 set_target_properties(${OFX_ADDONS_ACTIVE}
@@ -38,9 +39,9 @@ install(TARGETS of_static
         LIBRARY DESTINATION ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE}
         ARCHIVE DESTINATION ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE})
 
-#install( TARGETS of_shared
-#        LIBRARY DESTINATION ${OF_CMAKE_LIBS}
-#        ARCHIVE DESTINATION ${OF_CMAKE_LIBS})
+# install( TARGETS of_shared
+# LIBRARY DESTINATION ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE}
+# ARCHIVE DESTINATION ${OF_CMAKE_LIBS}/${CMAKE_BUILD_TYPE})
 
 #set_target_properties( of_shared
 #        PROPERTIES
