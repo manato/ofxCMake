@@ -8,7 +8,7 @@
 #
 # =================================================================
 
-set( NAME_ADDON     ofxSvg )       # <--- Set the name here
+set( NAME_ADDON     ofxThreadedFileDialog )       # <--- Set the name here
 
 #==================================================================
 
@@ -23,9 +23,8 @@ set( PATH_LIBS      ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs )
 # ---------------------------- SOURCE -----------------------------
 # -----------------------------------------------------------------
 
-file( GLOB_RECURSE   OFX_ADDON_CPP          "${PATH_SRC}/*.cpp" )
-file( GLOB_RECURSE   OFX_ADDON_LIBS_CPP     "${PATH_LIBS}/*.cpp" )
-add_library(  ${NAME_ADDON}   STATIC   ${OFX_ADDON_CPP} ${OFX_ADDON_LIBS_CPP} )
+file( GLOB_RECURSE   OFX_ADDON_LIBS_CPP     "${PATH_LIBS}/*.c" )
+add_library(  ${NAME_ADDON}   STATIC   ${OFX_ADDON_LIBS_CPP} )
 
 # -----------------------------------------------------------------
 # ---------------------------- HEADERS ----------------------------

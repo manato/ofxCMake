@@ -8,7 +8,7 @@
 #
 # =================================================================
 
-set( NAME_ADDON     ofxSvg )       # <--- Set the name here
+set( NAME_ADDON     ofxAudioAnalyzer )       # <--- Set the name here
 
 #==================================================================
 
@@ -34,5 +34,15 @@ add_library(  ${NAME_ADDON}   STATIC   ${OFX_ADDON_CPP} ${OFX_ADDON_LIBS_CPP} )
 OF_find_header_directories( HEADERS_SOURCE ${PATH_SRC} )
 OF_find_header_directories( HEADERS_LIBS ${PATH_LIBS} )
 
+
 include_directories( ${HEADERS_SOURCE} )
 include_directories( ${HEADERS_LIBS} )
+
+include_directories(
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia/algorithms"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia/scheduler"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia/spline"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia/streaming"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/essentia/include/essentia/utils"
+        )
