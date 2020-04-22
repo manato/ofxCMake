@@ -12,7 +12,7 @@ include_directories(${OF_CORE_HEADERS} ${OF_ADDON_HEADERS})
 # ----------------------------- Setting Libraries ----------------------------
 add_library(core OBJECT ${OF_SOURCE_FILES})
 add_library(of_static STATIC $<TARGET_OBJECTS:core>)
-# add_library(of_shared SHARED $<TARGET_OBJECTS:core>)
+add_library(of_shared SHARED $<TARGET_OBJECTS:core>)
 
 
 # -------------------------------- Linking --------------------------------
