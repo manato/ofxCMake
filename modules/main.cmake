@@ -56,7 +56,7 @@ endif ()
 # ============================================================================
 # ------------------------------- APP CONFIGURATION --------------------------
 # ============================================================================
-#add_dependencies( ${APP_NAME} of_shared )
+add_dependencies( ${APP_NAME} of_shared )
 set(OUTPUT_APP_NAME ${APP_NAME})
 
 if (CMAKE_BUILD_TYPE MATCHES Debug)

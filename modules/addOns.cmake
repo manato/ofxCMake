@@ -12,7 +12,7 @@ OF_include_internal_addOn( ofxOpenCv )
 OF_include_internal_addOn( ofxThreadedImageLoader )
 OF_include_internal_addOn( ofxAssimpModelLoader )
 OF_include_internal_addOn( ofxEmscripten )
-OF_include_internal_addOn( ofxPoco )
+# OF_include_internal_addOn( ofxPoco )
 
 # --- EXTERNAL
 OF_include_external_addOn( ofxTwistedRibbon )

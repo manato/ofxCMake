@@ -10,7 +10,8 @@ list( APPEND OF_SOURCE_FILES
 # --------------------------- Include Folders --------------------------------
 
 # ------------------ Putting the includes into one list ----------------------
-list( APPEND OF_CORE_HEADERS ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/include)
+#list( APPEND OF_CORE_HEADERS ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/include)
+
 
 # ============================================================================
 # ------------------------------ Libraries -----------------------------------
@@ -18,17 +19,11 @@ list( APPEND OF_CORE_HEADERS ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/include)
 # ---- shared
 set( LIB_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/lib/linux64/libfmodex.so )
 
-set( OF_CORE_LIBS
-        #${OF_DIRECTORY_ABSOLUTE}/libs/glfw/lib/linux64/libglfw3.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/lib/linux64/libkiss.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoCrypto.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoFoundation.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoNet.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoNetSSL.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoUtil.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoXML.a
-        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/linux64/libPocoJSON.a
+# ---- static
+set( OF_CORE_STATIC_LIBS
+        ${OF_CORE_LIBS}
         ${OF_DIRECTORY_ABSOLUTE}/libs/tess2/lib/linux64/libtess2.a
+        ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/lib/linux64/libkiss.a
         )
 
 # ============================================================================
@@ -39,8 +34,10 @@ set(CMAKE_MODULE_PATH
 
 find_package(PkgConfig REQUIRED)
 find_package(GStreamer REQUIRED)
+find_package(Boost REQUIRED filesystem system)
+find_package(Threads REQUIRED)
 
-
+find_library(opengl_lib OpenGL)
 
 PKG_SEARCH_MODULE( ALSA "REQUIRED" alsa )
 PKG_SEARCH_MODULE( CAIRO "REQUIRED" cairo )
@@ -66,7 +63,7 @@ set( OF_CORE_FRAMEWORKS
         sndfile
         openal
         ssl
-        crypto
+#        crypto
         pulse-simple
         pulse
         asound
@@ -84,7 +81,7 @@ set( OF_CORE_FRAMEWORKS
         gio-2.0
         gobject-2.0
         glib-2.0
-        mpg123
+#        mpg123
         glut
         X11
         Xrandr
