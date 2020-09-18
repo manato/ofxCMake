@@ -50,7 +50,5 @@ if(UNIX AND NOT APPLE)
 					"${PATH_LIBS}/hdf5/lib/linux64/libhdf5_tools.a"
 					"${PATH_LIBS}/hdf5/lib/linux64/libszip.a" 
 					)
-	target_link_libraries( ofxAlembic ${libalembic} ${CMAKE_DL_LIBS} Imath IlmThread Iex Half z )
-endif()
-
- 
+	target_link_libraries( ${NAME_ADDON} ${libalembic} ${CMAKE_DL_LIBS} Imath IlmThread Iex Half z )
+endif() 

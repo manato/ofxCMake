@@ -4,7 +4,7 @@
 
 file(   GLOB_RECURSE
         OFX_OPENCV_CPP
-        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxOpenCv/*.cpp"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxOpenCv/*.*pp"
         )
 
 # -----------------------------------------------------------------
@@ -40,6 +40,32 @@ if( APPLE )
             ${ZLIB_OPENCV}
             ${ofxOpenCvLib}
             )
+elseif( UNIX )
+        
+#    set(ofxOpenCvLib "${PATH_LIBS}/alembic/lib/linux64/libAlembic.a" 
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libhdf5.a"
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libhdf5_cpp.a"
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libhdf5_hl.a"
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libhdf5_hl_cpp.a"
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libhdf5_tools.a"
+#                    "${PATH_LIBS}/hdf5/lib/linux64/libszip.a" 
+#                    )
+    find_package( OpenCV REQUIRED )
+    include_directories( ${OpenCV_INCLUDE_DIRS} )
+#    target_link_libraries( ${NAME_ADDON} INTERFACE ${OpenCV_LIBS} )
+#    target_link_libraries( ${NAME_ADDON} opencv harfbuzz )
+    # If the package has been found, several variables will
+    # be set, you can find the full list with descriptions
+    # in the OpenCVConfig.cmake file.
+    # Print some message showing some of them
+    message(STATUS "OpenCV library status:")
+    message(STATUS "    config: ${OpenCV_DIR}")
+    message(STATUS "    version: ${OpenCV_VERSION}")
+    message(STATUS "    libraries: ${OpenCV_LIBS}")
+    message(STATUS "    include path: ${OpenCV_INCLUDE_DIRS}")
+
+    target_link_libraries(ofxOpenCv ${OpenCV_LIBS} )
+
 endif()
 
 target_link_libraries(  ofxOpenCv ${EXTRA_LIBS_OPENCV} )

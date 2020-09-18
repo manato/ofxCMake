@@ -1,38 +1,47 @@
-# =================================================================
-#
-# Template for addOns
-#
-# Easiest way: replace all the NAME into the name of your addOn
-# It has to have the same name, as the directory it is in
-# [e.g. ofxOneEuroFilter is in of/addons/ofxOneEuroFilter/]
-#
-# =================================================================
-
-set( NAME_ADDON     ofxSvg )       # <--- Set the name here
-
-#==================================================================
-
-
 # -----------------------------------------------------------------
-# ---------------------------- PATHS ------------------------------
-# -----------------------------------------------------------------
-set( PATH_SRC    ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/src )
-set( PATH_LIBS      ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs )
-
-# -----------------------------------------------------------------
-# ---------------------------- SOURCE -----------------------------
+# --- Script to search for all the .cpp files in the chosen folder
 # -----------------------------------------------------------------
 
-file( GLOB_RECURSE   OFX_ADDON_CPP          "${PATH_SRC}/*.cpp" )
-file( GLOB_RECURSE   OFX_ADDON_LIBS_CPP     "${PATH_LIBS}/*.cpp" )
-add_library(  ${NAME_ADDON}   STATIC   ${OFX_ADDON_CPP} ${OFX_ADDON_LIBS_CPP} )
+file(   GLOB_RECURSE
+        OFX_SVG_CPP
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/*.cpp"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/svgtiny/src/*.cpp"
+        )
 
 # -----------------------------------------------------------------
-# ---------------------------- HEADERS ----------------------------
+# --- Set ALL directories of the addOn, which contain .h files
 # -----------------------------------------------------------------
 
-OF_find_header_directories( HEADERS_SOURCE ${PATH_SRC} )
-OF_find_header_directories( HEADERS_LIBS ${PATH_LIBS} )
+include_directories(
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/src"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/svgtiny/include"
+        "${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/libxlm2/include"
+        )
 
-include_directories( ${HEADERS_SOURCE} )
-include_directories( ${HEADERS_LIBS} )
+# -----------------------------------------------------------------
+# --- Set the keyword, so you can simply include the addOn
+# -----------------------------------------------------------------
+
+add_library(    ofxSvg
+                STATIC
+                ${OFX_SVG_CPP} )
+
+# -----------------------------------------------------------------
+# --- Setting a compiled lib
+# -----------------------------------------------------------------
+
+if( APPLE )
+
+	set(    EXTRA_LIBS_SVG
+	        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoXML.a)
+	target_link_libraries(  ofxSvg ${EXTRA_LIBS_SVG} )
+
+elseif( UNIX )
+
+	set(    EXTRA_LIBS_SVG
+	        ${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/svgtiny/lib/linux64/libsvgtiny.a
+	        ${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/libxml2/lib/linux64/libxml2.a
+	        )
+	target_link_libraries(  ofxSvg ${EXTRA_LIBS_SVG} )	
+
+endif()

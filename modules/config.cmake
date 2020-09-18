@@ -16,8 +16,11 @@ add_library( of_shared  SHARED $<TARGET_OBJECTS:core> )
 
 # -------------------------------- Linking --------------------------------
 #TODO is OF_CORE_FRAMEWORKS OSX specific?
-target_link_libraries(  of_static   ${OF_CORE_FRAMEWORKS} ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} )
-target_link_libraries(  of_shared   ${OF_CORE_FRAMEWORKS} ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} )
+
+if (APPLE)
+    target_link_libraries(  of_static   ${OF_CORE_FRAMEWORKS} ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} )
+    target_link_libraries(  of_shared   ${OF_CORE_FRAMEWORKS} ${OF_ADDON_FRAMEWORKS} ${OF_CORE_LIBS} )
+endif ()
 
 # -------------------------------- Properties --------------------------------
 set_target_properties( of_static    PROPERTIES OUTPUT_NAME openFrameworksStatic)
