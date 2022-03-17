@@ -51,7 +51,8 @@ set(OF_SOURCE_FILES
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/math/ofMatrix4x4.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/math/ofQuaternion.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/math/ofVec2f.cpp
-    ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/math/ofVec4f.cpp
+    ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/math/ofVec4f.cpp    
+    ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/sound/ofSoundBaseTypes.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/sound/ofFmodSoundPlayer.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/sound/ofOpenALSoundPlayer.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/sound/ofSoundBuffer.cpp
@@ -92,7 +93,7 @@ set(HEADER_FREETYPE ${OF_DIRECTORY_ABSOLUTE}/libs/freetype/include)
 set(HEADER_FREETYPE2 ${OF_DIRECTORY_ABSOLUTE}/libs/freetype/include/freetype2)
 #set(HEADER_POCO ${OF_DIRECTORY_ABSOLUTE}/libs/poco/include)
 set(HEADER_KISS ${OF_DIRECTORY_ABSOLUTE}/libs/kiss/include)
-set(HEADER_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/include)
+set(HEADER_FMOD ${OF_DIRECTORY_ABSOLUTE}/libs/fmod/include)
 set(HEADER_FREEIMAGE ${OF_DIRECTORY_ABSOLUTE}/libs/FreeImage/include)
 set(HEADER_TESS2 ${OF_DIRECTORY_ABSOLUTE}/libs/tess2/include)
 set(HEADER_GLFW ${OF_DIRECTORY_ABSOLUTE}/libs/glfw/include)
@@ -110,7 +111,7 @@ set(OF_CORE_HEADERS
     ${HEADER_OF_6} ${HEADER_OF_7} ${HEADER_OF_8} ${HEADER_OF_9} ${HEADER_OF_10} ${HEADER_OF_11}
     #        ${HEADER_POCO}
     ${HEADER_FREETYPE} ${HEADER_FREETYPE2}
-    ${HEADER_FMODEX}
+    ${HEADER_FMOD}
     ${HEADER_FREEIMAGE}
     ${HEADER_KISS}
     ${HEADER_TESS2}

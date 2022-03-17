@@ -32,9 +32,11 @@ add_library(    ofxSvg
 
 if( APPLE )
 
-	set(    EXTRA_LIBS_SVG
-	        ${OF_DIRECTORY_ABSOLUTE}/libs/poco/lib/osx/PocoXML.a)
-	target_link_libraries(  ofxSvg ${EXTRA_LIBS_SVG} )
+ 	set(    EXTRA_LIBS_SVG
+	        ${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/svgtiny/lib/osx/svgtiny.a
+	        ${OF_DIRECTORY_ABSOLUTE}/addons/ofxSvg/libs/libxml2/lib/osx/xml2.a
+		)
+ 	target_link_libraries(  ofxSvg ${EXTRA_LIBS_SVG} )
 
 elseif( UNIX )
 

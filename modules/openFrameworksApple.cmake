@@ -43,7 +43,7 @@ list(APPEND OF_CORE_HEADERS
 # ============================================================================
 # --------------------------------- Libraries --------------------------------
 set(LIB_GLUT "${OF_DIRECTORY_ABSOLUTE}/libs/glut/lib/osx/GLUT.framework")
-set(LIB_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/lib/osx/libfmodex.dylib)
+set(LIB_FMOD ${OF_DIRECTORY_ABSOLUTE}/libs/fmod/lib/osx/libfmod.dylib)
 set(LIB_GLFW ${OF_DIRECTORY_ABSOLUTE}/libs/glfw/lib/osx/glfw3.a)
 set(LIB_FREEIMAGE ${OF_DIRECTORY_ABSOLUTE}/libs/FreeImage/lib/osx/freeimage.a)
 set(LIB_FREETYPE ${OF_DIRECTORY_ABSOLUTE}/libs/freetype/lib/osx/freetype.a)
@@ -64,7 +64,7 @@ set(OF_CORE_LIBS
     ${LIB_TESS}
     ${LIB_GLEW}
     ${LIB_CAIRO1} ${LIB_CAIRO2} ${LIB_CAIRO3} ${LIB_CAIRO}
-    ${LIB_FMODEX}
+    ${LIB_FMOD}
     ${LIB_RTAUDIO}
     ${LIB_GLFW}
     ${LIB_FREEIMAGE}
