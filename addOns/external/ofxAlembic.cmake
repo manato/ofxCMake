@@ -42,7 +42,18 @@ include_directories( ${PATH_LIBS}/hdf5/include )
 include_directories( ${PATH_LIBS}/OpenEXR/include )
 
 
-if(UNIX AND NOT APPLE)
+
+if(APPLE)
+	set(libalembic "${PATH_LIBS}/alembic/lib/osx/libAlembic.a" 
+					"${PATH_LIBS}/hdf5/lib/osx/libhdf5.a"
+					"${PATH_LIBS}/hdf5/lib/osx/libhdf5_cpp.a"
+					"${PATH_LIBS}/hdf5/lib/osx/libhdf5_hl.a"
+					"${PATH_LIBS}/hdf5/lib/osx/libhdf5_hl_cpp.a"
+					"${PATH_LIBS}/hdf5/lib/osx/libhdf5_tools.a"
+					"${PATH_LIBS}/hdf5/lib/osx/libszip.a" 
+					)
+	target_link_libraries( ${NAME_ADDON} ${libalembic} ${CMAKE_DL_LIBS} Imath-3_0 IlmThread Iex Half z OpenEXR )
+elseif(UNIX)
 	set(libalembic "${PATH_LIBS}/alembic/lib/linux64/libAlembic.a" 
 					"${PATH_LIBS}/hdf5/lib/linux64/libhdf5.a"
 					"${PATH_LIBS}/hdf5/lib/linux64/libhdf5_cpp.a"

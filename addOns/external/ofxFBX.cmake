@@ -17,7 +17,7 @@ set( NAME_ADDON     ofxFBX )       # <--- Set the name here
 # ---------------------------- PATHS ------------------------------
 # -----------------------------------------------------------------
 set( PATH_SRC    ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/src )
-set( PATH_LIBS      ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/libfbxsdk/ )
+set( PATH_LIBS      ${OF_DIRECTORY_ABSOLUTE}/addons/${NAME_ADDON}/libs/libfbxsdk )
 
 # -----------------------------------------------------------------
 # ---------------------------- SOURCE -----------------------------
@@ -40,10 +40,13 @@ OF_find_header_directories( HEADERS_LIBS ${PATH_LIBS} )
 include_directories( ${HEADERS_SOURCE} )
 include_directories( $${PATH_SRC}/FBXSource )
 include_directories( ${HEADERS_LIBS} )
-include_directories( "${PATH_LIBS}/libfbxsdk/include" )
+include_directories( "${PATH_LIBS}/include" )
 
-
-if(UNIX AND NOT APPLE)
+if(APPLE)
+	set(libfbx "${PATH_LIBS}/lib/osx/libfbxsdk.a" )
+	message("Adding libfbx : ${PATH_LIBS}/lib/osx/libfbxsdk.a")
+	target_link_libraries( ofxFBX ${libfbx} ${CMAKE_DL_LIBS} z xml2 iconv)
+elseif(UNIX)
 	set(libfbx "${PATH_LIBS}/lib/linux64/libfbxsdk.a" )
 	target_link_libraries( ofxFBX ${libfbx} ${CMAKE_DL_LIBS} pugixml z xml2)
 endif()
