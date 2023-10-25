@@ -17,7 +17,7 @@ list( APPEND OF_SOURCE_FILES
 # ------------------------------ Libraries -----------------------------------
 
 # ---- shared
-set( LIB_FMODEX ${OF_DIRECTORY_ABSOLUTE}/libs/fmodex/lib/linux64/libfmodex.so )
+set( LIB_FMOD ${OF_DIRECTORY_ABSOLUTE}/libs/fmod/lib/linux64/libfmod.so )
 
 # ---- static
 set( OF_CORE_STATIC_LIBS
@@ -99,5 +99,5 @@ set( OF_CORE_FRAMEWORKS
         glfw
         curl
         uriparser
-        ${LIB_FMODEX}       # SHARED
+        ${LIB_FMOD}       # SHARED
         )
