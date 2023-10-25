@@ -34,6 +34,8 @@ set(OF_SOURCE_FILES
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/gl/ofTexture.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/gl/ofVbo.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/gl/ofVboMesh.cpp
+    ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/gl/ofShadow.cpp
+    ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/gl/ofCubeMap.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofGraphicsBaseTypes.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/of3dGraphics.cpp
     ${OF_DIRECTORY_ABSOLUTE}/libs/openFrameworks/graphics/ofBitmapFont.cpp
