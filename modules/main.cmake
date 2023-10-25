@@ -10,7 +10,14 @@ get_filename_component(OF_DIRECTORY_ABSOLUTE ${OF_DIRECTORY_BY_USER} ABSOLUTE)
 set(CMAKE_PATH_NAME addons/ofxCMake)
 set(OF_CMAKE_MODULES ${OF_DIRECTORY_ABSOLUTE}/${CMAKE_PATH_NAME}/modules)
 set(OF_CMAKE_ADDONS ${OF_DIRECTORY_ABSOLUTE}/${CMAKE_PATH_NAME}/addOns)
-set(OF_CMAKE_LIBS ${OF_DIRECTORY_ABSOLUTE}/${CMAKE_PATH_NAME}/libs)
+if(OF_BUILD_AS_LIBRARY)
+  # Change install path to default one to keep each packages who use this addon independent.
+  # This change is especially needed to integrate ROS build system
+  set(OF_CMAKE_LIBS ${CMAKE_INSTALL_PREFIX}/lib)
+else()
+  set(OF_CMAKE_LIBS ${OF_DIRECTORY_ABSOLUTE}/${CMAKE_PATH_NAME}/libs)
+endif()
+
 
 
 # ============================================================================
@@ -63,8 +70,10 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     set(OUTPUT_APP_NAME "${APP_NAME}_debug")
 endif ()
 
-set_target_properties(${APP_NAME}
-                      PROPERTIES
-                      RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
-                      OUTPUT_NAME ${OUTPUT_APP_NAME}
-                      )
+if (NOT OF_BUILD_AS_LIBRARY)
+  set_target_properties(${APP_NAME}
+    PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin
+    OUTPUT_NAME ${OUTPUT_APP_NAME}
+  )
+endif()

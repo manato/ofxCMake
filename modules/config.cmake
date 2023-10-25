@@ -26,18 +26,19 @@ endif ()
 set_target_properties( of_static    PROPERTIES OUTPUT_NAME openFrameworksStatic)
 set_target_properties( of_shared PROPERTIES OUTPUT_NAME openFrameworksShared)
 
-# -------------------------- Copy OF Libs into CMake/libs --------------------
-set_target_properties(  ${OFX_ADDONS_ACTIVE}
-        PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
-        ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
-        )
+# Set output directory to the default one to keep packages independent
+# # -------------------------- Copy OF Libs into CMake/libs --------------------
+# set_target_properties(  ${OFX_ADDONS_ACTIVE}
+#         PROPERTIES
+#         LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
+#         ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS}
+#         )
 
-#TODO This does not copy the libs
-set_target_properties(  of_static PROPERTIES LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )
-set_target_properties(  of_static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )
-set_target_properties(  of_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${OF_CMAKE_LIBS} )
-set_target_properties(  of_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${OF_CMAKE_LIBS} )
+# #TODO This does not copy the libs
+# set_target_properties(  of_static PROPERTIES LIBRARY_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )
+# set_target_properties(  of_static PROPERTIES ARCHIVE_OUTPUT_DIRECTORY    ${OF_CMAKE_LIBS} )
+# set_target_properties(  of_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${OF_CMAKE_LIBS} )
+# set_target_properties(  of_shared PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${OF_CMAKE_LIBS} )
 
 install( TARGETS of_static
          LIBRARY DESTINATION ${OF_CMAKE_LIBS}
@@ -47,10 +48,10 @@ install( TARGETS of_shared
         LIBRARY DESTINATION ${OF_CMAKE_LIBS}
         ARCHIVE DESTINATION ${OF_CMAKE_LIBS})
 
-set_target_properties( of_shared
-        PROPERTIES
-        LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/${APP_NAME}.app/Contents/Frameworks
-        )
+# set_target_properties( of_shared
+#         PROPERTIES
+#         LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/${APP_NAME}.app/Contents/Frameworks
+#         )
 
 # ============================================================================
 

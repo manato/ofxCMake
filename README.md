@@ -46,6 +46,39 @@ This "addon" enables you to use CMake to build OpenFrameworks projects. It is no
 - A prompt might ask, if you want to change the 'project root'. Ignore this.
 - The CLion project files will be saved in  a '.idea' folder. If you want, you can ignore that in your git repo.
 
+### Using this addon with ROS2 packages
+This fork extends ofxCMake capability to work with ROS2 packages.
+Usage overview is as follows:
+```cmake
+# In CMakeLists.txt in ROS2 package
+set(APP_NAME
+    <DESIRED_NAME>)
+set(OF_DIRECTORY_BY_USER
+    <OPEN_FRAMEWORKS DIRECTORY ON YOUR INVIRONMENT>)
+set(${APP_NAME}_SOURCE_FILES
+    <OF related source files>
+)
+set(OF_APP_INCLUDE_DIR
+    <directory that stored related headers such as .hpp for "${APP_NAME}_SOURCE_FILES">
+)
+set(OF_BUILD_AS_LIBRARY TRUE)
+# This operation builds OF related stuff
+include(${OF_DIRECTORY_BY_USER}/addons/ofxCMake/modules/main.cmake)
+#
+# ... other ROS fashion operations
+#
+ament_auto_add_executable(<YOUR_ROS_NODE>
+    <YOUR_ROS_NODE_SRC>
+)
+target_link_libraries(<YOUR_ROS_NODE>
+    ${APP_NAME}
+)
+```
+**NOTE: **
+Currently, this addon is only compatible with "usual" ROS node, such as generated
+via `ament_auto_add_executable`. More specifically, this addon does not support 
+such as composable nodes,  which is build via `ament_auto_add_library`. 
+
 
 <!--
 ### Command Line Compilation
@@ -81,3 +114,4 @@ The infrastructure for other OS's (Linux, Windows) is already set up.
 
 ## Special Thanks
 **[Avilleret](https://github.com/avilleret)**
+**[saynono](https://github.com/saynono)**

@@ -54,6 +54,14 @@ set( ${APP_NAME}_SOURCE_FILES
 
 #include_directories("include/myIncludeFolder")
 
+# or set OF_APP_INCLUDE_DIR for target specific include directory in full path
+#set(OF_APP_INCLUDE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include/myIncludeFolder")
+
+# ------------------- Executable or library  ---------------
+# IF you would like to build the above sources as library
+# set OF_BUILD_AS_LIBRARY to TRUE
+set (OF_BUILD_AS_LIBRARY TRUE)
+
 # =========================================================================
 # ============================== OpenFrameworks ===========================
 # =========================================================================
